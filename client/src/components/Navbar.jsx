@@ -33,6 +33,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const user = 1
@@ -68,10 +69,10 @@ const Navbar = () => {
                   <DropdownMenuGroup>
                     <DropdownMenuLabel>My Account</DropdownMenuLabel>
                     <DropdownMenuItem>
-                      My learning
+                      <Link to="my-learning"> My learning </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                      Edit Profile
+                      <Link to="profile"> Edit Profile </Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                       Logout
@@ -138,8 +139,8 @@ const MobileNavbar = () =>{
           </SheetHeader>
 
           <nav className="flex flex-col space-y-4 px-4">
-            <span>My learning</span>
-            <span>Edit Profile</span>
+            <span><Link to="my-learning"> My learning </Link></span>
+            <span><Link to="profile"> Edit Profile </Link></span>
             <span>Logout</span> 
           </nav>
 
