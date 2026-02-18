@@ -72,13 +72,13 @@ export function Login() {
 
   useEffect(() => {
     if(registerIsSucess && registerData) toast.success(registerData.message || "Signup successful")
-      if(registerError) toast.error(registerData.data.message || "Signup failed") 
+      if(registerError) toast.error(registerError.data.message || "Signup failed") 
 
     if(loginIsSucess && loginData){
       toast.success(loginData.message || "Login successful")
       navigate("/")
     } 
-      if(loginError) toast.error(loginData.data.message || "Login failed")
+      if(loginError) toast.error(loginError.data.message || "Login failed")
   }, [
     loginIsLoading,
     registerIsLoading,
@@ -178,7 +178,7 @@ export function Login() {
 
               <CardContent className="grid gap-6">
                 <div className="grid gap-3">
-                  <Label htmlFor="tabs-demo-current">Current password</Label>
+                  <Label htmlFor="tabs-demo-current">Email</Label>
                   <Input
                     type="email"
                     placeholder="eg. suresh@gmail.com"
@@ -191,7 +191,7 @@ export function Login() {
                   />
                 </div>
                 <div className="grid gap-3">
-                  <Label htmlFor="tabs-demo-new">New password</Label>
+                  <Label htmlFor="tabs-demo-new">Password</Label>
                   <Input
                     type="Password"
                     placeholder="kuch bhi xyz"
