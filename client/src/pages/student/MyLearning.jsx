@@ -5,7 +5,7 @@ const MyLearning = () => {
   const isLoading = 0
   const MyLearningCourses = [1,2]
   return (
-    <div className='max-w-4xl mx-auto my-24 px-4 md:px-0'>
+    <div className='max-w-4xl mx-auto my-8 px-4 md:px-0'>
         <h1 className='font-bold text-2xl'>MY LEARNING</h1>
 
         <div className='my-5'>
