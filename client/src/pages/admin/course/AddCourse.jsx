@@ -43,7 +43,7 @@ const AddCourse = () => {
   }, [isSuccess]);
 
   return (
-    <div className="flex flex-col max-w-lg mx-auto mt-8 space-y-6">
+    <div className="flex flex-col max-w-lg  space-y-6">
       
       <div>
         <h1 className="font-bold text-2xl">
