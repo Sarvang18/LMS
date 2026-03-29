@@ -118,7 +118,7 @@ export const getCourseDetailWithPurchaseStatus = async (req, res) => {
       .populate({ path: "creator" })
       .populate({ path: "lectures" });
 
-    const purchased = await CoursePurchase.findOne({ userId, courseId });
+    const purchased = await CoursePurchase.findOne({ userId, courseId, status: "completed" });
     console.log(purchased);
 
     if (!course) {
@@ -127,7 +127,7 @@ export const getCourseDetailWithPurchaseStatus = async (req, res) => {
 
     return res.status(200).json({
       course,
-      purchased: !!purchased, // true if purchased, false otherwise
+      purchased: !!purchased, // true if paid & completed, false otherwise
     });
   } catch (error) {
     console.log(error);
