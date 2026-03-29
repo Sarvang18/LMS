@@ -12,29 +12,52 @@ const BuyCourseButton = ({ courseId }) => {
   useEffect(() => {
     if (isCheckoutSuccess && checkoutData) {
       if (checkoutData.order) {
-        // Initialize Razorpay
-        const options = {
-          key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-          amount: checkoutData.order.amount,
-          currency: "INR",
-          name: "LMS Platform",
-          description: `Purchase Course: ${checkoutData.course?.courseTitle || ""}`,
-          order_id: checkoutData.order.id, 
-          handler: async function (response) {
-            // Call the verify mutation
-            verifyPayment({
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature,
-            });
-          },
-          theme: {
-            color: "#3399cc"
-          }
+        const loadRazorpay = () => {
+          return new Promise((resolve) => {
+            if (window.Razorpay) return resolve(true);
+            const script = document.createElement("script");
+            script.src = "https://checkout.razorpay.com/v1/checkout.js";
+            script.onload = () => resolve(true);
+            script.onerror = () => resolve(false);
+            document.body.appendChild(script);
+          });
         };
 
-        const rzp = new window.Razorpay(options);
-        rzp.open();
+        const initializeRazorpay = async () => {
+          const res = await loadRazorpay();
+          if (!res) {
+            alert("Razorpay SDK failed to load. Please check your internet connection.");
+            return;
+          }
+
+          const key = import.meta.env.VITE_RAZORPAY_KEY_ID;
+          if (!key) {
+            alert("CRITICAL ERROR: VITE_RAZORPAY_KEY_ID is missing in Vercel. Please add it to your Environment Variables and redeploy.");
+            return;
+          }
+
+          const options = {
+            key: key,
+            amount: checkoutData.order.amount,
+            currency: "INR",
+            name: "LMS Platform",
+            description: `Purchase Course: ${checkoutData.course?.courseTitle || ""}`,
+            order_id: checkoutData.order.id, 
+            handler: async function (response) {
+              verifyPayment({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+              });
+            },
+            theme: { color: "#3399cc" }
+          };
+
+          const rzp = new window.Razorpay(options);
+          rzp.open();
+        };
+
+        initializeRazorpay();
       }
     }
     
