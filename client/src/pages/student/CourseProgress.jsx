@@ -102,7 +102,7 @@ const CourseProgress = () => {
         <div className="flex-1 md:3/5 h-fit rounded-lg shadow-lg p-4">
           <div>
             <video
-              src={currentLecture?.videoUrl || initialLecture.videoUrl}
+              src={currentLecture?.videoUrl?.replace("http://", "https://") || initialLecture.videoUrl?.replace("http://", "https://")}
               controls
               className="w-full h-auto md:rounded-lg"
               onPlay={() =>

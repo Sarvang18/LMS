@@ -76,7 +76,7 @@ const CourseDetail = () => {
                             <ReactPlayer 
                                 width={'100%'}
                                 height={'100%'}
-                                url={course.lectures[0].videoUrl}
+                                url={course.lectures[0].videoUrl?.replace("http://", "https://")}
                                 controls={true}
                             />
                         </div>  

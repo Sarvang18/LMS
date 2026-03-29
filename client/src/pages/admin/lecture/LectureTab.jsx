@@ -68,7 +68,7 @@ const LectureTab = () => {
 
         if (res.data.success) {
           setUploadVideoInfo({
-            videoUrl: res.data.data.url,
+            videoUrl: res.data.data.secure_url,
             publicId: res.data.data.publicId,
           });
           setButtonDisable(false);
