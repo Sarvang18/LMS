@@ -62,11 +62,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto hidden md:flex justify-between items-center gap-10 h-full">
         <div className="flex items-center gap-2">
           <School size={"30"} />
-          <Link to={'/'}>
+          <Link to={"/"}>
             <h1 className="hidden md:block font-extrabold text-2xl">
               E-learning
             </h1>
-          </Link> 
+          </Link>
         </div>
 
         {/* avatar and dark mode icon*/}
@@ -104,7 +104,9 @@ const Navbar = () => {
                 <DropdownMenuGroup>
                   {user.role === "instructor" && (
                     <>
-                      <DropdownMenuItem><Link to={"/admin/dashboard"}>Dashboard</Link></DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <Link to={"/admin/dashboard"}>Dashboard</Link>
+                      </DropdownMenuItem>
                     </>
                   )}
                 </DropdownMenuGroup>
@@ -149,7 +151,7 @@ const Navbar = () => {
 export default Navbar;
 
 const MobileNavbar = () => {
-  const role = "instructor";
+  const { user } = useSelector((store) => store.auth);
   return (
     <div>
       <Sheet>
@@ -165,7 +167,7 @@ const MobileNavbar = () => {
 
         <SheetContent className="flex flex-col px-4">
           <SheetHeader className="flex flex-row items-center gap-x-32 mt-4">
-            <SheetTitle>E-learning</SheetTitle>
+            <SheetTitle><Link to="/">E-learning</Link></SheetTitle>
             <Darkmode />
           </SheetHeader>
 
@@ -179,13 +181,18 @@ const MobileNavbar = () => {
             <span>Logout</span>
           </nav>
 
-          {role === "instructor" && (
             <SheetFooter>
               <SheetClose asChild>
-                <Button type="submit">Dashboard</Button>
+                {user?.role === "instructor" && (
+                  <>
+                    <Link to={"/admin/dashboard"}>
+                      <Button type="submit">Dashboard</Button>
+                    </Link>
+                  </>
+                )}
               </SheetClose>
             </SheetFooter>
-          )}
+
         </SheetContent>
       </Sheet>
     </div>
