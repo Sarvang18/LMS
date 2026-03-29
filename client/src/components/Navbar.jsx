@@ -66,7 +66,7 @@ const Navbar = () => {
             <h1 className="hidden md:block font-extrabold text-2xl">
               E-learning
             </h1>
-          </Link>
+          </Link> 
         </div>
 
         {/* avatar and dark mode icon*/}
@@ -104,7 +104,7 @@ const Navbar = () => {
                 <DropdownMenuGroup>
                   {user.role === "instructor" && (
                     <>
-                      <DropdownMenuItem>Dashboard</DropdownMenuItem>
+                      <DropdownMenuItem><Link to={"/admin/dashboard"}>Dashboard</Link></DropdownMenuItem>
                     </>
                   )}
                 </DropdownMenuGroup>
