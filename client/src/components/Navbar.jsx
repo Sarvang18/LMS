@@ -165,7 +165,7 @@ const MobileNavbar = () => {
           </Button>
         </SheetTrigger>
 
-        <SheetContent className="flex flex-col px-4">
+        <SheetContent aria-describedby={undefined} className="flex flex-col px-4">
           <SheetHeader className="flex flex-row items-center gap-x-32 mt-4">
             <SheetTitle><Link to="/">E-learning</Link></SheetTitle>
             <Darkmode />
