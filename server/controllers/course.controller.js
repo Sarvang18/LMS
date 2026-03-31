@@ -133,7 +133,7 @@ export const editCourse = async(req,res) =>{
             }
 
             //upload thumbnail to cloudinary
-            courseThumbnail = await uploadMedia(thumbnail.path)
+            courseThumbnail = await uploadMedia(thumbnail.buffer)
         }
 
         const updateData = {courseTitle,subTitle,description,category,courseLevel,coursePrice,courseThumbnail:courseThumbnail?.secure_url}

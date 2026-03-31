@@ -8,7 +8,7 @@ router
     .route("/upload-video")
     .post(upload.single("file"),async(req,res) =>{
         try {
-            const result = await uploadMedia(req.file.path)
+            const result = await uploadMedia(req.file.buffer)
             res.status(200).json({
                 success:true,
                 message:"File uploaded successfully",

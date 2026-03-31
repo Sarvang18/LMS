@@ -145,7 +145,7 @@ export const updateProfile = async (req, res) => {
       }
 
       // upload new photo
-      const cloudResponse = await uploadMedia(profilePhoto.path);
+      const cloudResponse = await uploadMedia(profilePhoto.buffer);
       photoUrl = cloudResponse.secure_url;
     }
 
