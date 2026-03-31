@@ -1,7 +1,7 @@
 import User from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/generateToken.js";
-import {deleteMediaFromCloudinary,deleteVideoFromCloudinary,uploadMedia} from "../utils/cloudinary.js"
+import { deleteMediaFromCloudinary, deleteVideoFromCloudinary, uploadMedia } from "../utils/cloudinary.js"
 
 //signup
 export const register = async (req, res) => {
@@ -164,6 +164,7 @@ export const updateProfile = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Failed to update profile",
+      error: error?.message || "Unknown error"
     });
   }
 };

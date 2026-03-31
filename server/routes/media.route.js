@@ -17,7 +17,8 @@ router
         } catch (error) {
             console.log(error)
             res.status(500).json({
-                message:"Error in uploading file"
+                message: "Error in uploading file",
+                error: error?.message || error
             })
         }
     })
