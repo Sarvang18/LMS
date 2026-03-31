@@ -102,11 +102,11 @@ const CourseProgress = () => {
         <div className="flex-1 md:3/5 h-fit rounded-lg shadow-lg p-4">
           <div>
             <video
-              src={currentLecture?.videoUrl?.replace("http://", "https://") || initialLecture.videoUrl?.replace("http://", "https://")}
+              src={currentLecture?.videoUrl?.replace("http://", "https://") || initialLecture?.videoUrl?.replace("http://", "https://") || ""}
               controls
               className="w-full h-auto md:rounded-lg"
               onPlay={() =>
-                handleLectureProgress(currentLecture?._id || initialLecture._id)
+                handleLectureProgress(currentLecture?._id || initialLecture?._id)
               }
             ></video>
           </div>
@@ -114,7 +114,7 @@ const CourseProgress = () => {
           {/* Display current wating lecture title */}
           <div className="mt-2">
             <h3 className="font-medium text-lg">
-              {`Lecture${courseDetails.lectures.findIndex((lec) => lec._id === currentLecture?._id || initialLecture._id) + 1} : ${currentLecture?.lectureTitle || initialLecture.lectureTitle}`}
+              {`Lecture${courseDetails.lectures.findIndex((lec) => lec._id === (currentLecture?._id || initialLecture?._id)) + 1} : ${currentLecture?.lectureTitle || initialLecture?.lectureTitle || "No Title"}`}
             </h3>
           </div>
         </div>

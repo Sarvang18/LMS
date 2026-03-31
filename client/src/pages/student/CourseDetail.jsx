@@ -76,11 +76,11 @@ const CourseDetail = () => {
                             <ReactPlayer 
                                 width={'100%'}
                                 height={'100%'}
-                                url={course.lectures[0].videoUrl?.replace("http://", "https://")}
+                                url={course.lectures[0]?.videoUrl?.replace("http://", "https://") || ""}
                                 controls={true}
                             />
                         </div>  
-                        <h1>Lecture title</h1>
+                        <h1>{course.lectures[0]?.lectureTitle || "Lecture title"}</h1>
                         <Separator className={'my-2'}/>
                         <h1 className='text-lg md:text-xl font-semibold'>Course price</h1>
                     </CardContent>
